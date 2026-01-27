@@ -2,11 +2,11 @@
 
 A modern, interactive portfolio website showcasing expertise in **Web Development**, **Mobile App Development**, and **AI Systems Integration**. Built with cutting-edge technologies and featuring AI-powered assistance, real-time visitor analytics, and immersive user experience.
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://prince-udogads-portfolio.netlify.app)
+
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Built with React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Powered by Gemini AI](https://img.shields.io/badge/AI-Gemini_Flash-blueviolet)](https://ai.google.dev/)
+
 
 ---
 
@@ -68,7 +68,7 @@ A modern, interactive portfolio website showcasing expertise in **Web Developmen
 ### Prerequisites
 - **Node.js** (v18 or higher)
 - **npm** or **yarn** package manager
-- **Google AI Studio API Key** ([Get one here](https://aistudio.google.com/))
+
 
 ### Installation
 
@@ -119,7 +119,7 @@ npm run preview
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `API_KEY` | Yes | Google Gemini API key for AI chatbot functionality |
+
 
 ### Customization Guide
 
@@ -290,7 +290,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 🙏 Acknowledgments
 
-- **Google AI** for the Gemini API
+- ** Prince Udochukwu for his tenacity
+- ** Rosemary Ekeagwu for her review
 - **React Team** for the amazing framework
 - **Vite** for the blazing-fast build tool
 - **Tailwind CSS** for the utility-first styling system

@@ -10,7 +10,7 @@ export const TWITTER_URL = "https://twitter.com/princeudogod";
 export const PROFILE_IMAGE_URL = "https://pbs.twimg.com/profile_images/1977078962758021120/l5kv-QyP.jpg";
 
 // Notification Webhook for Sentinel System
-export const SENTINEL_WEBHOOK_URL = "";
+export const SENTINEL_WEBHOOK_URL = "https://discord.com/api/webhooks/1465787861252047066/j9JJ8ASPgI9BrCSN2AmLUFMHFehxX9FGyomHtIA6NOgaJO8Y9t9Tnx904bCvzbKPlzg5";
 
 // Technical Interest Categories
 export const INTERESTS: { id: InterestCategory; label: string }[] = [

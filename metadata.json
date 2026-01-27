@@ -1,0 +1,8 @@
+{
+  "name": "Prince Udochukwu | Senior Systems Architect Portfolio",
+  "description": "High-performance portfolio of Prince Udochukwu, specializing in scalable Web, Mobile, and AI-driven software architecture.",
+  "requestFramePermissions": [
+    "geolocation",
+    "microphone"
+  ]
+}

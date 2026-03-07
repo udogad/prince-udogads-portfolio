@@ -9,6 +9,7 @@ export interface Project {
   tags: string[];
   imageUrl: string;
   link: string;
+  sourceCodeUrl?: string;
   year: string;
   techDetails: string;
   category: InterestCategory;

@@ -208,7 +208,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                  Visit Live Site <Globe className="w-5 h-5" />
                </a>
                <a 
-                 href={GITHUB_URL} 
+                 href={project.sourceCodeUrl || GITHUB_URL} 
                  target="_blank" 
                  className="w-full py-6 sm:py-8 bg-white/5 border border-white/10 text-white text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl hover:bg-white/10 transition-all flex items-center justify-center gap-4"
                >

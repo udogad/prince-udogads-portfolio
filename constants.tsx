@@ -3,7 +3,7 @@ import { Project, Experience, InterestCategory } from './types.ts';
 
 export const NAME = "Prince Udochukwu Ukasoanya";
 export const CONTACT_EMAIL = "smileud76@gmail.com";
-export const GITHUB_URL = "https://github.com/udogad";
+export const GITHUB_URL = "https://github.com/udogad/Corgnitive-Ledger";
 export const LINKEDIN_URL = "https://linkedin.com/in/udogad";
 export const TWITTER_URL = "https://twitter.com/princeudogod";
 
@@ -87,6 +87,7 @@ export const PROJECTS: Project[] = [
     tags: ['AI Systems', 'FinTech', 'LLMs'],
     imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&q=80&w=2070',
     link: '#',
+    sourceCodeUrl: 'https://github.com/udogad/Corgnitive-Ledger',
     year: '2025',
     techDetails: 'Python, FastAPI, Vector Databases (Pinecone), and RAG Architecture.',
     category: 'AI_SYSTEMS',
@@ -141,6 +142,7 @@ export const PROJECTS: Project[] = [
     tags: ['Mobile App', 'HealthTech', 'IoT'],
     imageUrl: 'https://images.unsplash.com/photo-1510017803434-a899398421b3?auto=format&fit=crop&q=80&w=2070',
     link: '#',
+    sourceCodeUrl: 'https://github.com/udogad/Pulse-Health',
     year: '2025',
     techDetails: 'React Native, Bluetooth Low Energy (BLE), and HealthKit.',
     category: 'MOBILE',
@@ -159,6 +161,7 @@ export const PROJECTS: Project[] = [
     tags: ['Mobile App', 'AR', 'Travel'],
     imageUrl: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=2070',
     link: '#',
+    sourceCodeUrl: 'https://github.com/udogad/orbit-tour',
     year: '2024',
     techDetails: 'Flutter, ARCore, and Google Maps SDK.',
     category: 'MOBILE',

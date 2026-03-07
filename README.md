@@ -1,311 +1,140 @@
-# 🚀 Prince Udochukwu - Senior Systems Architect Portfolio
+# Prince Udochukwu Portfolio
 
-A modern, interactive portfolio website showcasing expertise in **Web Development**, **Mobile App Development**, and **AI Systems Integration**. Built with cutting-edge technologies and featuring AI-powered assistance, real-time visitor analytics, and immersive user experience.
+Professional portfolio website built with React and TypeScript to showcase selected web, mobile, and AI systems projects.
 
+## Overview
 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Built with React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+This repository powers a single-page portfolio with:
+- project filtering by domain (Web, Mobile, AI Systems)
+- detailed case-study modals for each project
+- an AI assistant powered by Google Gemini
+- skills visualization and technology stack sections
+- contact form workflow with optional webhook notifications
 
+## Source Code Visibility (Public vs NDA)
 
----
+Each project supports explicit source-code visibility:
+- `sourceCodeUrl` present: visitors see a clickable **Source Code** button
+- `isSourceCodePrivate: true`: visitors see a professional NDA/confidentiality notice
+- neither set: visitors see **Source Code Unavailable**
 
-## ✨ Features
+This keeps public work accessible while handling confidential client work cleanly.
 
-### 🤖 AI-Powered Chat Assistant
-- **Gemini AI Integration**: Real-time conversational assistant that can answer questions about projects, skills, and experience
-- **Context-Aware Responses**: The AI understands the entire portfolio context and can provide detailed technical insights
-- **Smart Function Calling**: Can retrieve specific project details, skills, and contact information on demand
+## Tech Stack
 
-### 📊 Interactive Visualizations
-- **Skills Radar Chart**: Visual representation of proficiency across Web, Mobile, and AI domains using Recharts
-- **Tech Stack Display**: Organized showcase of technologies categorized by specialty areas
-- **Project Filtering**: Filter projects by category (Web, Mobile, AI Systems)
+- React 19
+- TypeScript 5
+- Vite 6
+- Lucide React
+- Recharts
+- Google Generative AI (`@google/genai`)
+- Tailwind utility classes (loaded via CDN in `index.html`)
 
-### 🎯 Sentinel Protocol (Visitor Analytics)
-- **Real-time Engagement Tracking**: Monitor visitor interactions and engagement patterns
-- **Geolocation Integration**: Track visitor demographics and locations
-- **Webhook Notifications**: Instant alerts for new contacts via Discord/Slack webhooks
-- **Contact Form Integration**: Seamless inquiry management with instant notifications
+## Project Configuration
 
-### 🎨 Premium UI/UX
-- **Glassmorphism Design**: Modern frosted-glass aesthetic with backdrop blur effects
-- **Smooth Animations**: Fluid transitions and micro-interactions using CSS animations
-- **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
-- **Dark Mode Theme**: Eye-friendly color scheme with cinematic contrast
-- **Accessibility**: ARIA labels and semantic HTML for screen reader compatibility
+Portfolio content is managed in `constants.tsx`.
 
-### 📱 Project Showcase
-- **Detailed Case Studies**: Each project includes brief, execution strategy, challenges, and impact
-- **Image Galleries**: High-quality project screenshots and demos
-- **Live Demo Links**: Direct links to deployed applications
-- **GitHub Repository Links**: Access to source code
-- **Technology Tags**: Clear indication of tech stack used
+Project schema (simplified):
 
----
+```ts
+{
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  imageUrl: string;
+  link: string;
+  sourceCodeUrl?: string;
+  isSourceCodePrivate?: boolean;
+  year: string;
+  techDetails: string;
+  category: 'WEB' | 'MOBILE' | 'AI_SYSTEMS';
+  status: 'Completed' | 'In Progress' | 'Beta';
+  role: string;
+  keyFeatures: string[];
+  theBrief: string;
+  theExecution: string;
+  theChallenges: string;
+  theImpact: string;
+}
+```
 
-## 🛠️ Tech Stack
-
-### **Frontend**
-- **React 19.2** - Latest React with concurrent features
-- **TypeScript 5.8** - Type-safe development
-- **Vite** - Lightning-fast build tool and dev server
-- **Tailwind CSS** - Utility-first styling (configured via inline classes)
-
-### **UI Components & Icons**
-- **Lucide React** - Beautiful, customizable SVG icons
-- **Recharts** - Composable charting library for data visualization
-
-### **AI & Integration**
-- **Google Generative AI (@google/genai)** - Gemini Flash model integration
-- **Geolocation API** - Visitor tracking and analytics
-- **Webhook Integration** - Discord/Slack notifications
-
----
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- **Node.js** (v18 or higher)
-- **npm** or **yarn** package manager
 
+- Node.js 18+
+- npm
 
 ### Installation
 
-1. **Clone the repository**
 ```bash
 git clone https://github.com/udogad/prince-udogads-portfolio.git
 cd prince-udogads-portfolio
-```
-
-2. **Install dependencies**
-```bash
 npm install
 ```
 
-3. **Set up environment variables**
+### Environment Variables
 
-Create a `.env.local` file in the root directory:
+Create `.env.local` in the project root:
+
 ```env
-API_KEY=your_gemini_api_key_here
+API_KEY=your_gemini_api_key
 ```
 
-4. **Run the development server**
+| Variable | Required | Description |
+| --- | --- | --- |
+| `API_KEY` | Yes | Gemini API key used by `services/geminiService.ts` |
+
+### Run Locally
+
 ```bash
 npm run dev
 ```
 
-The application will start at `http://localhost:5173`
+Default local URL: `http://localhost:5173`
 
-### Build for Production
+## Build and Preview
 
 ```bash
 npm run build
-```
-
-The optimized production build will be generated in the `dist/` directory.
-
-### Preview Production Build
-
-```bash
 npm run preview
 ```
 
----
+## Scripts
 
-## ⚙️ Configuration
+- `npm run dev`: start development server
+- `npm run build`: create production build
+- `npm run preview`: preview production build locally
 
-### Environment Variables
+## Deployment
 
-| Variable | Required | Description |
-|----------|----------|-------------|
+The repo includes `netlify.toml` and works with standard Vite deployment flows.
 
+General steps:
+1. Set `API_KEY` in your hosting environment.
+2. Run build (`npm run build`) during deploy.
+3. Publish the `dist/` directory.
 
-### Customization Guide
+## Repository Structure
 
-All content can be customized by editing `constants.tsx`:
-
-#### **Personal Information**
-```typescript
-export const NAME = "Your Name";
-export const CONTACT_EMAIL = "your.email@example.com";
-export const GITHUB_URL = "https://github.com/yourusername";
-export const LINKEDIN_URL = "https://linkedin.com/in/yourusername";
-export const TWITTER_URL = "https://twitter.com/yourusername";
-export const PROFILE_IMAGE_URL = "your_image_url";
+```text
+components/        UI components
+services/          External service integrations (Gemini)
+App.tsx            Main application
+constants.tsx      Portfolio content and configuration
+types.ts           Shared TypeScript types
+index.tsx          Application entry
 ```
 
-#### **Projects**
-Add/edit projects in the `PROJECTS` array:
-```typescript
-{
-  id: 'unique-id',
-  title: 'Project Name',
-  year: '2024',
-  category: 'WEB', // 'WEB' | 'MOBILE' | 'AI_SYSTEMS'
-  tags: ['React', 'Node.js'],
-  imageUrl: 'project_image_url',
-  description: 'Short description',
-  brief: 'Detailed brief',
-  execution: 'Technical approach',
-  challenges: 'Problems solved',
-  impact: 'Results achieved',
-  liveUrl: 'https://demo.com',
-  githubUrl: 'https://github.com/username/repo'
-}
-```
+## Contact
 
-#### **Skills & Tech Stack**
-Modify `SKILLS` and `TECH_STACK` arrays to reflect your expertise.
+Prince Udochukwu Ukasoanya
+- Email: smileud76@gmail.com
+- LinkedIn: https://linkedin.com/in/udogad
+- GitHub: https://github.com/udogad
+- Twitter: https://twitter.com/princeudogod
 
-#### **Webhook Notifications**
-Enable Sentinel Protocol by adding your webhook URL:
-```typescript
-export const SENTINEL_WEBHOOK_URL = "your_discord_or_slack_webhook_url";
-```
+## License
 
----
-
-## 📂 Project Structure
-
-```
-prince-udogads-portfolio/
-├── components/              # React components
-│   ├── AIChatBot.tsx       # Gemini AI chat interface
-│   ├── JourneyModal.tsx    # Career journey timeline
-│   ├── Navbar.tsx          # Navigation header
-│   ├── ProjectCarousel.tsx # Project slideshow
-│   ├── ProjectModal.tsx    # Project detail modal
-│   ├── SentinelPulse.tsx   # Visitor analytics
-│   ├── SkillsRadar.tsx     # Skills visualization
-│   ├── TechStack.tsx       # Technology showcase
-│   └── TourGuide.tsx       # Interactive tour
-├── services/
-│   └── geminiService.ts    # Gemini AI integration
-├── App.tsx                 # Main application component
-├── constants.tsx           # Configuration & content data
-├── types.ts                # TypeScript type definitions
-├── index.tsx               # Application entry point
-├── index.html              # HTML template
-├── vite.config.ts          # Vite configuration
-├── tsconfig.json           # TypeScript configuration
-├── package.json            # Dependencies & scripts
-└── netlify.toml            # Netlify deployment config
-```
-
----
-
-## 🌐 Deployment
-
-### Netlify (Recommended)
-
-This project is configured for Netlify deployment with `netlify.toml`.
-
-1. **Connect your repository** to Netlify
-2. **Set environment variables** in Netlify dashboard:
-   - `API_KEY`: Your Gemini API key
-3. **Deploy** - Netlify will automatically build and deploy
-
-### Vercel
-
-```bash
-npm install -g vercel
-vercel --prod
-```
-
-### Manual Deployment
-
-1. Build the project: `npm run build`
-2. Upload the `dist/` folder to your hosting provider
-3. Ensure environment variables are configured on the server
-
----
-
-## 🎨 Key Components
-
-### AI Chat Assistant
-Located in `components/AIChatBot.tsx`, powered by Google Gemini Flash model. Supports:
-- Project information retrieval
-- Skills and experience queries
-- Contact information
-- Technical discussions
-
-### Sentinel Protocol
-Real-time visitor tracking in `components/SentinelPulse.tsx`:
-- Captures visitor location via Geolocation API
-- Sends webhook notifications for new contacts
-- Displays engagement metrics
-
-### Skills Radar
-Interactive radar chart in `components/SkillsRadar.tsx` visualizing proficiency across:
-- Web Development
-- Mobile App Development
-- AI Systems
-
----
-
-## 📸 Features Showcase
-
-- **Hero Section**: Full-screen introduction with animated gradients and profile image
-- **Project Gallery**: Filterable grid layout with hover effects and modal details
-- **Tech Stack**: Categorized technology display with descriptions
-- **About Section**: Career philosophy and work process
-- **Contact Form**: Direct inquiry submission with webhook notifications
-- **Responsive Navigation**: Smooth scroll anchors and mobile-friendly menu
-
----
-
-## 🔧 Development
-
-### Code Style
-- **TypeScript** for type safety
-- **Functional Components** with React Hooks
-- **Tailwind CSS** for styling (utility-first approach)
-- **ESM** module system
-
-### Performance Optimizations
-- Lazy loading for images (`loading="lazy"`)
-- Optimized asset delivery with Vite
-- Minimal dependencies for faster load times
-- CSS-in-JS avoided for better performance
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👤 Contact
-
-**Prince Udochukwu Ukasoanya**
-
-- **Email**: smileud76@gmail.com
-- **GitHub**: [@udogad](https://github.com/udogad)
-- **LinkedIn**: [linkedin.com/in/udogad](https://linkedin.com/in/udogad)
-- **Twitter**: [@princeudogod](https://twitter.com/princeudogod)
-
----
-
-## 🙏 Acknowledgments
-
-- ** Prince Udochukwu for his tenacity
-- ** Rosemary Ekeagwu for her review
-- **React Team** for the amazing framework
-- **Vite** for the blazing-fast build tool
-- **Tailwind CSS** for the utility-first styling system
-- **Lucide Icons** for beautiful SVG icons
-
----
-
-## 🌟 Show Your Support
-
-If you found this portfolio template helpful, please consider:
-- ⭐ Starring this repository
-- 🍴 Forking it for your own use
-- 📢 Sharing it with others
-
----
-
-**Built with ❤️ by Prince Udochukwu Ukasoanya**
+`LICENSE` exists in this repository but currently contains no finalized license text.

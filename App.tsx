@@ -209,8 +209,13 @@ const App: React.FC = () => {
                                     <span className="text-[7px] sm:text-[9px] font-black uppercase tracking-[0.3em] text-slate-400 bg-white/5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border border-white/5">{project.tags[0]}</span>
                                  </div>
                                  <div className="flex justify-between items-end gap-4">
-                                   <div className="flex-1">
+                                   <div className="flex-1 space-y-2">
                                       <h3 className="text-3xl sm:text-5xl font-serif font-bold text-white group-hover:translate-x-2 transition-transform duration-700 leading-none tracking-tighter">{project.title}</h3>
+                                      {project.isSourceCodePrivate && (
+                                        <p className="text-[9px] sm:text-[10px] font-semibold text-slate-300/85 tracking-wide">
+                                          Built for client/company • Source code private due to NDA.
+                                        </p>
+                                      )}
                                    </div>
                                    <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white text-black flex items-center justify-center transform group-hover:rotate-12 hover:scale-110 transition-all duration-500 shadow-xl shrink-0">
                                       <ArrowRight className="w-5 h-5 sm:w-7 sm:h-7" />

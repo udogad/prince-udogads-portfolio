@@ -10,6 +10,7 @@ export interface Project {
   imageUrl: string;
   link: string;
   sourceCodeUrl?: string;
+  isSourceCodePrivate?: boolean;
   year: string;
   techDetails: string;
   category: InterestCategory;

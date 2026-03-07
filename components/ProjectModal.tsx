@@ -2,14 +2,19 @@
 import React, { useEffect } from 'react';
 import { X, ExternalLink, Code, Terminal, Zap, Calendar, Target, CheckCircle2, ArrowRight, Github, BookOpen, Layers, AlertCircle, Award, Sparkles, Star, Globe, ShieldAlert } from 'lucide-react';
 import { Project } from '../types';
-import { GITHUB_URL } from '../constants';
 
 interface ProjectModalProps {
   project: Project;
   onClose: () => void;
 }
 
+const PRIVATE_SOURCE_CODE_MESSAGE =
+  "Source code is private due to NDA/confidentiality obligations. I worked on this project, but I’m not permitted to publish the repository.";
+
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+  const hasPublicSourceCode = Boolean(project.sourceCodeUrl);
+  const hasPrivateSourceCode = Boolean(project.isSourceCodePrivate && !project.sourceCodeUrl);
+
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -207,13 +212,32 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
                >
                  Visit Live Site <Globe className="w-5 h-5" />
                </a>
-               <a 
-                 href={project.sourceCodeUrl || GITHUB_URL} 
-                 target="_blank" 
-                 className="w-full py-6 sm:py-8 bg-white/5 border border-white/10 text-white text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl hover:bg-white/10 transition-all flex items-center justify-center gap-4"
-               >
-                 <Github className="w-5 h-5" /> Source Code
-               </a>
+               {hasPublicSourceCode ? (
+                 <a 
+                   href={project.sourceCodeUrl} 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="w-full py-6 sm:py-8 bg-white/5 border border-white/10 text-white text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl hover:bg-white/10 transition-all flex items-center justify-center gap-4"
+                 >
+                   <Github className="w-5 h-5" /> Source Code
+                 </a>
+               ) : hasPrivateSourceCode ? (
+                 <div className="space-y-3">
+                   <div className="w-full py-6 sm:py-8 bg-white/5 border border-white/10 text-slate-400 text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl flex items-center justify-center gap-4 cursor-not-allowed">
+                     <Github className="w-5 h-5" /> Source Code Private
+                   </div>
+                   <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-start gap-3">
+                     <AlertCircle className="w-4 h-4 text-amber-400 mt-0.5 shrink-0" />
+                     <p className="text-xs text-amber-100/90 leading-relaxed">
+                       {PRIVATE_SOURCE_CODE_MESSAGE}
+                     </p>
+                   </div>
+                 </div>
+               ) : (
+                 <div className="w-full py-6 sm:py-8 bg-white/5 border border-white/10 text-slate-400 text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl flex items-center justify-center gap-4 cursor-not-allowed">
+                   <Github className="w-5 h-5" /> Source Code Unavailable
+                 </div>
+               )}
             </div>
           </aside>
 

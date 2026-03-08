@@ -10,10 +10,18 @@ interface ProjectModalProps {
 
 const PRIVATE_SOURCE_CODE_MESSAGE =
   "Source code is private due to NDA/confidentiality obligations. I worked on this project, but I’m not permitted to publish the repository.";
+const PUBLIC_DEPLOYMENT_PENDING_MESSAGE =
+  "This project is fully built and available in source code form on GitHub. Public deployment is pending, but a walkthrough video and detailed case study are available upon request.";
+const PRIVATE_DEPLOYMENT_PENDING_MESSAGE =
+  "This project is fully built and public deployment is pending, but a walkthrough video and detailed case study are available upon request.";
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+  const hasLiveLink = Boolean(project.link?.trim() && project.link !== '#');
   const hasPublicSourceCode = Boolean(project.sourceCodeUrl);
   const hasPrivateSourceCode = Boolean(project.isSourceCodePrivate && !project.sourceCodeUrl);
+  const deploymentPendingMessage = hasPublicSourceCode
+    ? PUBLIC_DEPLOYMENT_PENDING_MESSAGE
+    : PRIVATE_DEPLOYMENT_PENDING_MESSAGE;
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -205,13 +213,28 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
             </div>
 
             <div className="flex flex-col gap-4">
-               <a 
-                 href={project.link} 
-                 target="_blank" 
-                 className="w-full py-6 sm:py-8 bg-white text-black text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl hover:bg-blue-600 hover:text-white transition-all transform hover:scale-[1.02] flex items-center justify-center gap-4 shadow-xl"
-               >
-                 Visit Live Site <Globe className="w-5 h-5" />
-               </a>
+               {hasLiveLink ? (
+                 <a
+                   href={project.link}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="w-full py-6 sm:py-8 bg-white text-black text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl hover:bg-blue-600 hover:text-white transition-all transform hover:scale-[1.02] flex items-center justify-center gap-4 shadow-xl"
+                 >
+                   Visit Live Site <Globe className="w-5 h-5" />
+                 </a>
+               ) : (
+                 <div className="space-y-3">
+                   <div className="w-full py-6 sm:py-8 bg-white/5 border border-white/10 text-slate-300 text-center font-black uppercase tracking-widest text-[11px] rounded-2xl sm:rounded-3xl flex items-center justify-center gap-4">
+                     <Globe className="w-5 h-5" /> Live Site Pending
+                   </div>
+                   <div className="p-4 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3">
+                     <ShieldAlert className="w-4 h-4 text-blue-300 mt-0.5 shrink-0" />
+                     <p className="text-xs text-blue-50/90 leading-relaxed">
+                       {deploymentPendingMessage}
+                     </p>
+                   </div>
+                 </div>
+               )}
                {hasPublicSourceCode ? (
                  <a 
                    href={project.sourceCodeUrl} 

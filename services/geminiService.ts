@@ -14,7 +14,7 @@ export async function getPortfolioAssistantResponse(prompt: string, history: any
   // Using flash for faster interaction speeds
   const modelName = 'gemini-3-flash-preview';
 
-  const systemInstruction = `You are a friendly and helpful personal assistant for ${NAME}, a Senior Systems Engineer.
+  const systemInstruction = `You are a friendly and helpful personal assistant for ${NAME}, a Full-Stack Developer.
 Your goal is to help visitors learn about his work, projects, and expertise in a warm, conversational way.
 Use the following context to answer questions accurately.
 

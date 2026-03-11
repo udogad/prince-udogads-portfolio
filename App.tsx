@@ -113,7 +113,7 @@ const App: React.FC = () => {
                 {NAME.split(' ').slice(0, 1)} <span className="gradient-text italic font-normal tracking-[-0.05em]">{NAME.split(' ').slice(1, 2)}</span>
               </h1>
               <p className="text-xl sm:text-2xl md:text-4xl text-slate-400 max-w-2xl font-medium leading-tight">
-                I build high-performance products specializing in <span className="text-white">Web Development</span>, <span className="text-white">Mobile Apps</span>, and <span className="text-blue-500">AI Systems</span>.
+                <span className="text-white">Full-Stack Developer</span> building high-performance products across <span className="text-white">Web Development</span>, <span className="text-white">Mobile Apps</span>, and <span className="text-blue-500">AI Systems</span>.
               </p>
               
               <div className="flex flex-wrap gap-6 sm:gap-10 items-center pt-4 sm:pt-8">

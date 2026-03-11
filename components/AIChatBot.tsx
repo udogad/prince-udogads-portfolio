@@ -15,7 +15,6 @@ import {
   Download,
   Share2
 } from 'lucide-react';
-import { getPortfolioAssistantResponse } from '../services/geminiService.ts';
 import { ChatMessage } from '../types.ts';
 import { CONTACT_EMAIL, NAME } from '../constants.tsx';
 
@@ -153,6 +152,7 @@ END:VCALENDAR`;
     setIsLoading(true);
 
     try {
+      const { getPortfolioAssistantResponse } = await import('../services/geminiService.ts');
       const result = await getPortfolioAssistantResponse(userMsg, historyToPass);
       
       const groundingLinks = result.groundingChunks
@@ -193,9 +193,13 @@ END:VCALENDAR`;
       }]);
     } catch (error) {
       console.error("Chat Handler Error:", error);
+      const errorMessage =
+        error instanceof Error && error.message.includes('Gemini API key is missing')
+          ? "The AI assistant is not configured yet. Add your Gemini API key to enable chat."
+          : "Oops! Something went wrong. Please check your internet connection and try again.";
       setMessages(prev => [...prev, { 
         role: 'assistant', 
-        content: "Oops! Something went wrong. Please check your internet connection and try again." 
+        content: errorMessage
       }]);
     } finally {
       setIsLoading(false);

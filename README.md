@@ -84,7 +84,8 @@ API_KEY=your_gemini_api_key
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `API_KEY` | Yes | Gemini API key used by `services/geminiService.ts` |
+| `API_KEY` | Yes | Preferred Gemini API key variable used by `services/geminiService.ts` |
+| `GEMINI_API_KEY` | No | Backward-compatible alternative to `API_KEY` |
 
 ### Run Locally
 

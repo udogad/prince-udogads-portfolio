@@ -3,7 +3,13 @@ import { GoogleGenAI, Type } from "@google/genai";
 import { PROJECTS, NAME, TECH_STACK, INTERESTS } from "../constants.tsx";
 
 export async function getPortfolioAssistantResponse(prompt: string, history: any[]) {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
+
+  if (!apiKey) {
+    throw new Error("Gemini API key is missing. Set API_KEY or GEMINI_API_KEY before building the app.");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   
   // Using flash for faster interaction speeds
   const modelName = 'gemini-3-flash-preview';

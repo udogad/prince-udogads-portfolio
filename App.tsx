@@ -1,5 +1,5 @@
 
-import React, { useState, useRef } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { 
   CheckCircle2, 
   Activity, 
@@ -22,23 +22,47 @@ import {
   GitBranch
 } from 'lucide-react';
 import Navbar from './components/Navbar.tsx';
-import SkillsRadar from './components/SkillsRadar.tsx';
 import TechStack from './components/TechStack.tsx';
-import ProjectModal from './components/ProjectModal.tsx';
 import SentinelPulse from './components/SentinelPulse.tsx';
 import AIChatBot from './components/AIChatBot.tsx';
 import { PROJECTS, INTERESTS, NAME, GITHUB_URL, LINKEDIN_URL, TWITTER_URL, PROFILE_IMAGE_URL, SENTINEL_WEBHOOK_URL } from './constants.tsx';
 import { InterestCategory, Project, ThemeVibe } from './types.ts';
 
+const SkillsRadar = lazy(() => import('./components/SkillsRadar.tsx'));
+const ProjectModal = lazy(() => import('./components/ProjectModal.tsx'));
+
 const App: React.FC = () => {
   const [selectedInterest, setSelectedInterest] = useState<InterestCategory | null>(null);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [formState, setFormState] = useState<'idle' | 'sending' | 'success'>('idle');
+  const [shouldLoadSkillsRadar, setShouldLoadSkillsRadar] = useState(false);
   
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const skillsRadarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (shouldLoadSkillsRadar) return;
+
+    const node = skillsRadarRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadSkillsRadar(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '240px' }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [shouldLoadSkillsRadar]);
 
   const handleInterestSelect = (interest: InterestCategory | null) => {
     setSelectedInterest(interest);
@@ -91,7 +115,11 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#010208] text-slate-50 selection:bg-blue-500/30 w-full antialiased">
-      {activeProject && <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />}
+      {activeProject && (
+        <Suspense fallback={<div className="fixed inset-0 z-[110] bg-[#020617]/95 backdrop-blur-sm" />}>
+          <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+        </Suspense>
+      )}
       <Navbar theme={ThemeVibe.FUTURISTIC} onThemeToggle={() => {}} />
 
       {/* Ambient Background Elements */}
@@ -265,8 +293,19 @@ const App: React.FC = () => {
               </div>
               <div className="relative w-full max-w-[500px] mx-auto lg:max-w-none">
                  <div className="absolute inset-0 bg-blue-500/15 blur-[150px] sm:blur-[200px] rounded-full"></div>
-                 <div className="relative glass p-8 sm:p-16 rounded-[3rem] sm:rounded-[6rem] border-white/10 shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] transform hover:scale-105 transition-all duration-700">
-                    <SkillsRadar />
+                 <div
+                    ref={skillsRadarRef}
+                    className="relative glass p-8 sm:p-16 rounded-[3rem] sm:rounded-[6rem] border-white/10 shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] transform hover:scale-105 transition-all duration-700"
+                 >
+                    {shouldLoadSkillsRadar ? (
+                      <Suspense fallback={<div className="w-full h-[400px] sm:h-[460px] md:h-[520px] lg:h-[560px] rounded-[2rem] bg-white/5 animate-pulse" />}>
+                        <SkillsRadar />
+                      </Suspense>
+                    ) : (
+                      <div className="w-full h-[400px] sm:h-[460px] md:h-[520px] lg:h-[560px] flex items-center justify-center">
+                        <div className="w-24 h-24 rounded-full bg-blue-500/10 animate-pulse shadow-[0_0_80px_rgba(59,130,246,0.2)]" />
+                      </div>
+                    )}
                  </div>
               </div>
            </div>
